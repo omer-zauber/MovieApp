@@ -5,7 +5,8 @@ const Movie = mongoose.model('Movie', {
     type: String, 
     required: true,
     minlength: 1,
-    trim: true
+    trim: true,
+    unique: true
   },
   genre: {
     type: String,
