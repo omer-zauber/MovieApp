@@ -6,19 +6,19 @@ const { Movie } = require('./models/movie');
 const { calculateAverage } = require('./utils/calculateAverage');
 
 const app = express();
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 3001;
 
 app.use(bodyParser.json());
 
-app.post('/movies', (req, res)=> {
+app.post('/api/movies', (req, res)=> {
   const { name, genre, year, averageRating, numberOfRatings } = req.body;
   const movie = new Movie({ name, genre, year, averageRating, numberOfRatings });
   movie.save()
-    .then(doc => res.status(200).send(doc))
+    .then(movie => res.status(200).send(movie))
     .catch(e => res.status(400).send(e));
 });
 
-app.get('/movies/:genre/:start/:end', (req, res) => {
+app.get('/api/movies/:genre/:start/:end', (req, res) => {
   const { genre, start, end } = req.params;
   Movie.find({
       genre,
@@ -31,7 +31,7 @@ app.get('/movies/:genre/:start/:end', (req, res) => {
     .catch(e => res.status(400).send(e));
 });
 
-app.patch('/movies/:name', (req, res) => {
+app.patch('/api/movies/:name', (req, res) => {
   const name = req.params.name;
   Movie.findOne({ name })
     .then((movie) => {
