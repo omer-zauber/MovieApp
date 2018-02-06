@@ -24,7 +24,7 @@ const Movie = mongoose.model('Movie', {
   },
   numberOfRatings: {
     type: Number,
-    required: true
+    default: 1
   }
 });
 
