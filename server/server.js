@@ -6,6 +6,7 @@ const { Movie } = require('./models/movie');
 const { calculateAverage } = require('./utils/calculateAverage');
 
 const app = express();
+const port = process.env.PORT || 3000;
 
 app.use(bodyParser.json());
 
@@ -60,8 +61,8 @@ app.patch('/movies/:name', (req, res) => {
     .catch(e => res.status(400).send(e));
 })
 
-app.listen(3000, () => {
-  console.log('listens on port 3000');
+app.listen(port, () => {
+  console.log('listens on port', port);
 });
 
 //dilema - search data from the path? body?
