@@ -9,6 +9,7 @@ const app = express();
 const port = process.env.PORT || 3001;
 
 app.use(bodyParser.json());
+app.use(express.static(path.join(__dirname, 'client/build')));
 
 app.post('/api/movies', (req, res)=> {
   const { name, genre, year, averageRating, numberOfRatings } = req.body;
