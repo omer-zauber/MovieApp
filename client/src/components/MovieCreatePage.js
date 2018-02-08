@@ -7,8 +7,8 @@ export default class MovieCreatePage extends React.Component {
     this.state = {
       name:'',
       genre:'',
-      year: '',
-      rating: '',
+      year: null,
+      rating: null,
       message: ''
     };
   };
@@ -36,9 +36,8 @@ export default class MovieCreatePage extends React.Component {
 
   onSubmit = (e) => {
     e.preventDefault();
-    console.log('click!');
 
-    if (this.state.name === '') return this.setState({ message: "Please enter a name of a movie." });
+    if (this.state.name.trim() === '') return this.setState({ message: "Please enter a name of a movie." });
     if (this.state.genre === '') return this.setState({ message: "Please enter a genre for the movie." });
     if (this.state.year < 1898) return this.setState({ message: "Please enter a valid year for a movie." });
     if (this.state.rating ==='') return this.setState({ message: "Please rate this movie 1-10." });
@@ -53,12 +52,18 @@ export default class MovieCreatePage extends React.Component {
         console.log(response);
         //if (response.status === 200) this.props.history.push('/');
         if (response.status === 200) {
-          this.setState({ message: "Movie added succesfully!" })
+          this.setState({ 
+            message: "Movie added succesfully!", 
+            name: '',
+            genre: '',
+            year: null,
+            rating: null
+          });         
         };
       })
       .catch((error) => {
-        console.log(error);
-        //////////////HOW DO I GET THE ORIGINAL ERROR MESSAGE??
+        if (error.response.data.code === 11000) this.setState({ message: "This movie already exists in the database! feel free to rate it in the Rating Page." });
+        else this.setState({ message: "We're sorry, an unknown error has occurred." });
       });
   };
 
@@ -75,13 +80,20 @@ export default class MovieCreatePage extends React.Component {
           value={this.state.name}
           onChange ={this.onNameChange}
         />
-        <input 
-          type="text" 
-          name="genre"
-          placeholder="Genre" 
+        <select
           value={this.state.genre}
           onChange={this.onGenreChange}
-        />
+        >
+          <option value="" disabled>Genre</option>
+          <option value="Action">Action</option>
+          <option value="Animated">Animated</option>       
+          <option value="Comedy">Comedy</option>
+          <option value="Drama">Drama</option>
+          <option value="Fantasy">Fantasy</option>
+          <option value="Horror">Horror</option>
+          <option value="Sci-Fi">Sci-Fi</option>  
+          <option value="Thriller">Thriller</option>
+        </select>
         <input 
           type="number" 
           name="year" 
