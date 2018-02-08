@@ -7,8 +7,8 @@ export default class MovieCreatePage extends React.Component {
     this.state = {
       name:'',
       genre:'',
-      year: null,
-      rating: null,
+      year: '',
+      rating: '',
       message: ''
     };
   };
@@ -46,7 +46,7 @@ export default class MovieCreatePage extends React.Component {
       name: this.state.name,
       genre: this.state.genre,
       year: this.state.year,
-      averageRating: this.state.rating 
+      averageRating: parseInt(this.state.rating, 10)
     })
       .then((response) => {
         console.log(response);
@@ -56,8 +56,8 @@ export default class MovieCreatePage extends React.Component {
             message: "Movie added succesfully!", 
             name: '',
             genre: '',
-            year: null,
-            rating: null
+            year: '',
+            rating: ''
           });         
         };
       })
