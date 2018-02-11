@@ -7,7 +7,7 @@ const { Movie } = require('./models/movie');
 const { calculateAverage } = require('./utils/calculateAverage');
 
 const app = express();
-const port = process.env.PORT || 3001;
+const port = 3001;
 
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'client/build')));
