@@ -67,8 +67,6 @@ app.listen(port, () => {
   console.log('listens on port', port);
 });
 
-//dilema - search data from the path? body?
-//dilema2 - average computing - server-side? client-side? --if i do the computing client-side i'd have to send the data to the client.
 
 
 
