@@ -4,11 +4,17 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "concurrently \"npm run server\" \"npm run client\"",
+    "start-dev": "concurrently \"npm run server\" \"npm run client\"",
+    "start": "npm run server",
     "server": "node server/server.js",
     "client": "node start-client.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "heroku-postbuild": "cd react-ui/ && npm install && npm install --only=dev --no-shrinkwrap && npm run build"
   },
+  "cacheDirectories": [
+    "node_modules",
+    "react-ui/node_modules"
+  ],
   "engines": {
     "node": "9.3.0"
   },
@@ -21,9 +27,6 @@
     "express": "^4.16.2",
     "mongodb": "^3.0.2",
     "mongoose": "^5.0.3",
-    "react-scripts": "^1.1.0",
-    "react": "^16.2.0",
-    "react-dom": "^16.2.0",
-    "react-router-dom": "^4.2.2"
+    "react-scripts": "^1.1.0"
   }
 }
