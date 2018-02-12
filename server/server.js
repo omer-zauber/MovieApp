@@ -12,9 +12,9 @@ const PORT = process.env.PORT || 5000;
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'client/build')));
 //
-// app.get('/*', function (req, res) {
-//   res.sendFile(path.join(__dirname, 'build', 'index.html'));
-// });
+app.get('/*', function (req, res) {
+  res.sendFile(path.join(__dirname, 'build', 'index.html'));
+});
 //addition from github
 
 app.post('/api/movies', (req, res)=> {
@@ -59,7 +59,6 @@ app.patch('/api/movies/:name', (req, res) => {
             new: true
         }).then((result) => {
           res.status(200).send(result);
-          console.log(result); //monitoring. delete after
         }).catch((e) => res.status(400).send(e));
       } else {
         return res.status(400).send('the rating is an invalid number');
