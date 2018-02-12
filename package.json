@@ -5,12 +5,11 @@
   "main": "index.js",
   "scripts": {
     "start-dev": "concurrently \"npm run server\" \"npm run client\"",
-    "start": "npm run server",
-    "server": "node server/server.js",
+    "start": "node server/server.js",
+    "server": "nodemon server/server.js",
     "client": "node start-client.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "heroku-postbuild": "cd client/ && npm install && npm install --only=dev --no-shrinkwrap && npm run build",
-    "build": "cd client/ && react-scripts build"
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
   },
   "cacheDirectories": [
     "node_modules",
