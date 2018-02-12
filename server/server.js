@@ -7,15 +7,19 @@ const { Movie } = require('./models/movie');
 const { calculateAverage } = require('./utils/calculateAverage');
 
 const app = express();
-const PORT = process.env.PORT || 5000;
+const port = process.env.PORT || 3001;
 
-app.use(bodyParser.json());
-app.use(express.static(path.join(__dirname, 'client/build')));
-//
-app.get('/*', function (req, res) {
-  res.sendFile(path.join(__dirname, 'build', 'index.html'));
-});
-//addition from github
+// app.use(bodyParser.json());
+// console.log('ENV ===', NODE_ENV);
+// if (NODE_ENV === 'production') {
+//   app.use(express.static(path.join(__dirname, 'client/build')));
+//   //
+//   app.get('/*', function (req, res) {
+//     res.sendFile(path.join(__dirname, 'build', 'index.html'));
+//   });
+//   //addition from github
+// };
+
 
 app.post('/api/movies', (req, res)=> {
   const { name, genre, year, averageRating, numberOfRatings } = req.body;
@@ -27,6 +31,7 @@ app.post('/api/movies', (req, res)=> {
 
 app.get('/api/movies/:genre/:start/:end', (req, res) => {
   const { genre, start, end } = req.params;
+  console.log(genre, start, end);
   Movie.find({
       genre,
       year: {

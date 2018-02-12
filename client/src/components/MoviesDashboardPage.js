@@ -47,6 +47,8 @@ export default class MovieDashboardPage extends React.Component {
       })
       .catch((error) => {
         this.setState({ message: "We're sorry, an unknown error has occurred." });
+        console.log(error);
+        console.log(`/api/movies/${genre}/${start}/${end}`);
       });
   };
 
