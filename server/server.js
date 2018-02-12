@@ -11,13 +11,13 @@ const port = process.env.PORT || 3001;
 
 app.use(bodyParser.json());
 
-  //
-  app.use(express.static(path.join(__dirname, 'client/build')));
+  // //
+  // app.use(express.static(path.join(__dirname, 'client/build')));
 
-  app.get('/*', function (req, res) {
-    res.sendFile(path.join(__dirname, 'build', 'index.html'));
-  });
-  //addition from github
+  // app.get('/*', function (req, res) {
+  //   res.sendFile(path.join(__dirname, 'build', 'index.html'));
+  // });
+  // //addition from github
 
 
 
