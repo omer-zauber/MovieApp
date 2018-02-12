@@ -10,15 +10,15 @@ const app = express();
 const port = process.env.PORT || 3001;
 
 app.use(bodyParser.json());
-// console.log('ENV ===', NODE_ENV);
-// if (NODE_ENV === 'production') {
-//   app.use(express.static(path.join(__dirname, 'client/build')));
-//   //
-//   app.get('/*', function (req, res) {
-//     res.sendFile(path.join(__dirname, 'build', 'index.html'));
-//   });
-//   //addition from github
-// };
+
+  //
+  app.use(express.static(path.join(__dirname, 'client/build')));
+
+  app.get('/*', function (req, res) {
+    res.sendFile(path.join(__dirname, 'build', 'index.html'));
+  });
+  //addition from github
+
 
 
 app.post('/api/movies', (req, res)=> {
