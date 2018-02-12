@@ -9,7 +9,7 @@ const { calculateAverage } = require('./utils/calculateAverage');
 const app = express();
 const port = process.env.PORT || 3001;
 
-// app.use(bodyParser.json());
+app.use(bodyParser.json());
 // console.log('ENV ===', NODE_ENV);
 // if (NODE_ENV === 'production') {
 //   app.use(express.static(path.join(__dirname, 'client/build')));
